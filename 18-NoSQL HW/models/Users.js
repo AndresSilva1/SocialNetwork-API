@@ -6,8 +6,8 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: true,
-      unique:true,
-      trim:true
+      unique: true,
+      trim: true
     },
     email: {
       type: String,
@@ -15,7 +15,7 @@ const userSchema = new Schema(
       unique: true,
       match: [/\w+@\w+\.\w{2,10}/]
     },
-    
+
     thoughts: [{
       type: Schema.Types.ObjectId,
       ref: "Thought"
@@ -33,7 +33,7 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.virtual("friendCount").get(function(){
+userSchema.virtual("friendCount").get(function () {
   return this.friends.length
 })
 

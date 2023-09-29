@@ -4,8 +4,8 @@ const {
   getSingleUser,
   createUser,
   deleteUser,
-  addAssignment,
-  removeAssignment,
+  // updateUser,
+  addFriend,
   removeFriend,
 } = require('../../controllers/userController');
 
@@ -13,12 +13,17 @@ const {
 router.route('/').get(getUsers).post(createUser);
 
 // /api/Users/:UserId
-router.route('/:userId').get(getSingleUser).delete(deleteUser);
+router.route('/:userId').get(getSingleUser).delete(deleteUser); //Add Update
+
+// router.route('/:userId').get(getSingleUser).update(updateUser); 
 
 // /api/students/:studentId/assignments
-router.route('/:studentId/assignments').post(addAssignment);
+// router.route('/:usertId/friends')
+
+//I'm not sure what I should replace assignments with
 
 // /api/students/:studentId/assignments/:assignmentId
-router.route('/:studentId/assignments/:freindId').delete(removeFriend);
+router.route('/:userId/friends/:friendId').post(addFriend).delete(removeFriend);
 
 module.exports = router;
+// fetch("https://google.com/procudts/3asdf2342342?local=us&")

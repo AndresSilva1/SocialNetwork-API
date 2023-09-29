@@ -3,33 +3,33 @@ const { Thought, User } = require('../models');
 module.exports = {
   // Get all courses
   getThoughts(req, res) {
-    Course.find()
-      .then((courses) => res.json(courses))
+    Thought.find()
+      .then(thoughts => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
   // Get a course
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.id })
       .select('-__v')
-      .then((course) =>
-        !course
+      .then((thoughts) =>
+        !thoughts
           ? res.status(404).json({ message: 'No course with that ID' })
-          : res.json(course)
+          : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
   // Create a course
-  createCourse(req, res) {
-    Course.create(req.body)
-      .then((course) => res.json(course))
+  createThought(req, res) {
+    Thought.create(req.body)
+      .then((thought) => res.json(course))
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
       });
   },
   // Delete a course
-  deleteCourse(req, res) {
-    Course.findOneAndDelete({ _id: req.params.courseId })
+  deleteThought(req, res) {
+    Thought.findOneAndDelete({ _id: req.params.courseId })
       .then((course) =>
         !course
           ? res.status(404).json({ message: 'No course with that ID' })
@@ -39,16 +39,16 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Update a course
-  updateCourse(req, res) {
-    Course.findOneAndUpdate(
+  updateThought(req, res) {
+    Thought.findOneAndUpdate(
       { _id: req.params.courseId },
       { $set: req.body },
       { runValidators: true, new: true }
     )
-      .then((course) =>
-        !course
-          ? res.status(404).json({ message: 'No course with this id!' })
-          : res.json(course)
+      .then((thoughts) =>
+        !thoughts
+          ? res.status(404).json({ message: 'No thoughts with this id!' })
+          : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
